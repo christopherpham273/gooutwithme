@@ -1,13 +1,15 @@
-function moveButtonMobile(event) {
-    // Prevent the mouseover event from firing on touch devices
-    event.preventDefault();
-  
-    var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth);
-    var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight);
+function moveButton(event) {
+    // Check if the event is a touch event and prevent the mouseover event
+    if (event.type === "touchstart") {
+        event.preventDefault();
+    }
+
+    var x = Math.random() * (window.innerWidth - document.getElementById('noButton').clientWidth);
+    var y = Math.random() * (window.innerHeight - document.getElementById('noButton').clientHeight);
     document.getElementById('noButton').style.left = `${x}px`;
     document.getElementById('noButton').style.top = `${y}px`;
-  }
-  
-  // Separate event listener for mobile touch devices
-  document.getElementById('noButton').addEventListener('touchstart', moveButtonMobile);
-  
+}
+
+// Attach the event listeners
+document.getElementById('noButton').addEventListener('mouseover', moveButton);
+document.getElementById('noButton').addEventListener('touchstart', moveButton);
